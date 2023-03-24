@@ -17,32 +17,21 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
-
-WebUI.navigateToUrl('https://github.com/')
-
-Date today = new Date()
-
-String time = today.format('hh.mm a')
-
-
-
-WebUI.click(findTestObject('Object Repository/Page_GitHub Lets build from here  GitHub/a_Sign in'))
-
-WebUI.setText(findTestObject('Object Repository/Page_Sign in to GitHub  GitHub/input_Username or email address_login'), 
-    'solanki.rahul680@gmail.com')
-
-WebUI.clearText(findTestObject('Object Repository/Page_Sign in to GitHub  GitHub/input_Password_password'))
-
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Sign in to GitHub  GitHub/input_Password_password'), '2z4Bdby/xcc5f0HruYcDZQ==')
-
-WebUI.click(findTestObject('Object Repository/Page_Sign in to GitHub  GitHub/input_Password_commit'))
+WebUI.openBrowser('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
 
 WebUI.delay(2)
 
-WebUI.click(findTestObject('Object Repository/Page_GitHub/summary_New project_Header-link'))
+WebUI.setText(findTestObject('Page_OrangeHRM/input_Username_username'), 'Admin')
 
-WebUI.click(findTestObject('Object Repository/Page_GitHub/button_Sign out'))
+WebUI.setText(findTestObject('Page_OrangeHRM/input_Password_password'), 'admin123')
+
+WebUI.click(findTestObject('Page_OrangeHRM/button_Login'))
+
+WebUI.delay(2)
+
+response = WebUI.getText(findTestObject('Page_OrangeHRM/h6_Dashboard'))
+
+WebUI.verifyTextPresent(response, false)
 
 WebUI.closeBrowser()
 
